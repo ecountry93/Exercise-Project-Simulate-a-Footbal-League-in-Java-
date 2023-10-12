@@ -15,8 +15,8 @@ public class Main {
 	public static void main(String[] args) {
 		
 		
-		Team t1 = new Team("Real Madrid", 0);
-		Team t2 = new Team("Barcelona", 0);
+		Team t1 = new Team("HomeTeam", 0);
+		Team t2 = new Team("AwayTeam", 0);
 		
 		
 		
@@ -64,7 +64,7 @@ public class Main {
 				break;
 				
 				case 3 :   System.out.println("In which team whould you like to add a player?"
-						+" 1 - Real Madrid or  2 - Barcelona");
+						+" 1 - HomeTeam or  2 - AwayTeam");
 						
 				           int x = sc.nextInt();
 				           if(x==1) {
@@ -78,7 +78,7 @@ public class Main {
 				break;
 				
 				case 4 : System.out.println("From which team whould you like to delete a player?"
-						+" 1 - Real Madrid or 2 - Barcelona");
+						+" 1 - HomeTeam or 2 - AwayTeam");
 				
 		           int y = sc.nextInt();
 		           if(y==1) {
@@ -91,8 +91,8 @@ public class Main {
 		        	   
 				
 				case 5 : 
-						System.out.println("Real Madrid componence:" + t1.getPlayers()); 
-						System.out.println("Barcelona componence:" + t2.getPlayers());
+						System.out.println("HomeTeam componence:" + t1.getPlayers()); 
+						System.out.println("AwayTeam componence:" + t2.getPlayers());
 						
 					
 				break;
