@@ -15,12 +15,15 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		
+		//we create 4 new objects of type Team (they all have 0 points now)
 		Team t1 = new Team("Real Madrid", 0);
 		Team t2 = new Team("Barcelona", 0);
 		Team t3 = new Team("Juventus", 0);
 		Team t4 = new Team("PSG", 0);
 		
-		
+		//we add 3 players to each team
+		//each player has a name and a his own skill
 		t1.l.add(new Player("a1",90));
 		t1.l.add(new Player("b1", 89));
 		t1.l.add(new Player("c1",82));
@@ -38,11 +41,11 @@ public class Main {
 		t4.l.add(new Player("b4", 84));
 		t4.l.add(new Player("c4",83));
 		
-		
+		//we create a new list and add all the teams to it
 		LinkedList<Team> teams = new LinkedList<Team>();
 		teams.add(t1); teams.add(t2); teams.add(t3); teams.add(t4);
         
-
+        //we add the teams in a HashMap also (for some extra operations)
 		Map<Integer, Team> m = new HashMap <Integer,  Team>();
 		m.put(1, t1);
 		m.put(2, t2);
@@ -50,8 +53,12 @@ public class Main {
 		m.put(4, t4);
 		
 		
+	
+	
+		 
+			
 			try {	
-			Scanner sc = new Scanner(System.in);
+			  
 				System.out.println("-----MENU------");
 				System.out.println("1.Add a team");
 				System.out.println("2.Delete a team");
@@ -62,16 +69,17 @@ public class Main {
 				System.out.println("7.Simulate a Football League and show the final standings");
 			    
 			
-					
+				//we use the Scanner class to get user input
+				Scanner sc = new Scanner(System.in);
 				int number = sc.nextInt();
-			    
+			
 				 switch(number) {
 				
 				case 1 :  System.out.println(" Enter the id, name and points of the team you want to add:");
 					addTeam(m);
 				break;
 				
-				case 2 : System.out.println("Enter the id of the team you want to delete:");
+				case 2 : System.out.println("Enter the id of the team you want to delete: (1,2,3,4)");
 					deleteTeam(m);
 				
 				break;
@@ -114,6 +122,7 @@ public class Main {
 				
 				
 				case 6: 
+					    
 				        FriendlyMatch(t1, t2);
 				  break;
 				  
@@ -129,21 +138,23 @@ public class Main {
 		}
 	
 	
-	
+	//adds a new team to the Map
 	public static void addTeam( Map<Integer, Team> m) {
     	
 		
 		Scanner sc = new Scanner(System.in);
 		
 		
-		
 		int id = sc.nextInt();
 		String name = sc.next();
 		
 		int points = sc.nextInt();
+		
+		//we make a new Team object and add it in the Map
 		Team t = new Team(name, points);
 		m.put(id, t);
 		
+		//displays the Map after addition
 		for(Map.Entry<Integer, Team> entry  : m.entrySet()) {
 			System.out.println(entry);
 		}
@@ -153,6 +164,7 @@ public class Main {
 	
 
 
+	// deletes team from the Map
 	
 	public static void deleteTeam(Map<Integer, Team> m) {
 		Scanner sc = new Scanner(System.in) ;
@@ -160,6 +172,7 @@ public class Main {
 		
 		int id = sc.nextInt();
 		
+		// we iterate through the HashMap and if the id we entered matches an existing key in the Map we remove that certain key 
 		for(Iterator<Map.Entry<Integer, Team>> it = m.entrySet().iterator(); it.hasNext();) {
 			Map.Entry<Integer, Team> entry = it.next();
 			if(entry.getKey() == id){
@@ -167,6 +180,7 @@ public class Main {
 			it.remove();
 			}
 		}
+		//we display the new Map 
 		for(Map.Entry<Integer, Team> entry  : m.entrySet()) {
 			System.out.println(entry);
 		}
@@ -174,20 +188,26 @@ public class Main {
 		sc.close();
 	}
 
-
+		//method to simulate the score in a football match between 2 selected teams 
 		public static void FriendlyMatch(Team homeTeam, Team awayTeam) {
 		
 		 System.out.println("Simulating 2 friendly matches between " + homeTeam.getName() +" and " + awayTeam.getName());
+		 
 	     Random random = new Random();
 	     
 		 for(int i=0; i<1; i++)   {
+			 
+			 //here we call the getTeamSkill() method from class Team, divide it by 40 and use the Random class to get the score(goals) of the homeTeam
 			 int homeScore = random.nextInt(homeTeam.getTeamSkill() /40);
+			 //same for the away team
 			 int awayScore = random.nextInt(awayTeam.getTeamSkill() /40);
 		 
-	    
+	    //we display the result
 	      System.out.println("First match: " + homeTeam.getName() + " - " + awayTeam.getName() + " " + homeScore + " - " + awayScore);
 		 }
 		 
+		 
+		 //same for the second match
 		 for(int i=0; i<1; i++)   {
 		     int homeScore = random.nextInt(homeTeam.getTeamSkill() /40);
 		     int awayScore = random.nextInt(awayTeam.getTeamSkill() /40);
@@ -197,37 +217,47 @@ public class Main {
 			 }
 	}
 		
-		
+		//method to simulate an entire football league with the added teams
 		public static void FootballLeague(LinkedList<Team> teams) {
 			
 		
 			Random random = new Random();
 			
-			Map<String, Integer> standings = new HashMap<String, Integer>();
+			//we define a LinkedHashMap for the final standings in the league
+			Map<String, Integer> standings = new LinkedHashMap<String, Integer>();
 			
 		    
 		     System.out.println("First round matches:"); 
+		     
+		     //we loop through the list and make all the teams play each other
 			 for(int i=0; i<teams.size(); i++)   {
 				 for(int j=i+1 ; j<teams.size(); j++) {
+					 
+				//we use the same formula as above to get the scores 
 				 int homeScore = random.nextInt(teams.get(i).getTeamSkill() /40);
 				 int awayScore = random.nextInt(teams.get(j).getTeamSkill() /40);
-				 
+				   
+				 //we make a points system 
 				 if(homeScore>awayScore) {
+					 
+					 //winning team gets 3 points 
 					 teams.get(i).points += 3;
 				 }
 				 else if (homeScore < awayScore) {
 					 teams.get(j).points +=3;
 				 }
 				 else if(homeScore == awayScore) {
+					 
+					 //if the final score is a draw each team gets 1 point
 					 teams.get(i).points += 1; 
 					 teams.get(j).points += 1;
 				 }
-				 
+				 //display results
 		      System.out.println(" " + teams.get(i).getName() + " - " + teams.get(j).getName() + " " + homeScore + " - " + awayScore);
 			 }
 				 
 			 }
-			 
+			 //same for the second round of matches
 			 System.out.println("Second round matches:");
 			 for(int i=0; i<teams.size(); i++)   {
 				 for(int j=i+1 ; j<teams.size(); j++) {
@@ -250,15 +280,15 @@ public class Main {
 			 }
 			
 			
-		
+		     //after the rounds are played we add the name and points of the teams in the LinkedHashMap  
 			 for(int k=0; k<teams.size(); k++)   {
 					//System.out.println(teams.get(k).name + " " + "-" + " " + teams.get(k).points);
 					
 					standings.put(teams.get(k).name, teams.get(k).points);
 			 }
 			 
-			 
-			 Map<String,Integer> finalStandings = 
+			 // we use the stream class to reverse the order of the Map after comparing its values (points)
+			 Map<String,Integer> finalStandings =  
 					 standings.entrySet()
 			        .stream()
 			        .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
@@ -270,6 +300,8 @@ public class Main {
 			 System.out.println("_____________");
 			 System.out.println("Final Standings:");
 			 System.out.println("_____________");
+			 
+			 //we display the final standings
 			 for(Map.Entry<String, Integer> entry  : finalStandings.entrySet()) {
 					System.out.println(entry.getKey() + " " + entry.getValue());
 			 }  
