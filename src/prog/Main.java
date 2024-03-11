@@ -45,7 +45,7 @@ public class Main {
 		LinkedList<Team> teams = new LinkedList<Team>();
 		teams.add(t1); teams.add(t2); teams.add(t3); teams.add(t4);
         
-        //we add the teams in a HashMap also (for some extra operations)
+        //we add the teams in a HashMap also
 		Map<Integer, Team> m = new HashMap <Integer,  Team>();
 		m.put(1, t1);
 		m.put(2, t2);
