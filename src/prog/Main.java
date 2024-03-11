@@ -138,7 +138,7 @@ public class Main {
 		}
 	
 	
-	//adds a new team to the Map
+	//add a new team to the Map
 	public static void addTeam( Map<Integer, Team> m) {
     	
 		
@@ -150,7 +150,7 @@ public class Main {
 		
 		int points = sc.nextInt();
 		
-		//we make a new Team object and add it in the Map
+		//we make a new Team object and add it to the Map
 		Team t = new Team(name, points);
 		m.put(id, t);
 		
@@ -164,7 +164,7 @@ public class Main {
 	
 
 
-	// deletes team from the Map
+	// delete a team from the Map
 	
 	public static void deleteTeam(Map<Integer, Team> m) {
 		Scanner sc = new Scanner(System.in) ;
@@ -287,7 +287,7 @@ public class Main {
 					standings.put(teams.get(k).name, teams.get(k).points);
 			 }
 			 
-			 // we use the stream class to reverse the order of the Map after comparing its values (points)
+			 // we use the stream class to compare Map values (points)
 			 Map<String,Integer> finalStandings =  
 					 standings.entrySet()
 			        .stream()
