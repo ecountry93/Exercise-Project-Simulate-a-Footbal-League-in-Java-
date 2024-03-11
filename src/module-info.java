@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author Petru
+ * @author Bogdan
  *
  */
 module prog {
