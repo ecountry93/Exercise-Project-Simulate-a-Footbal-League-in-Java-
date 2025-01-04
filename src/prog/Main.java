@@ -89,10 +89,10 @@ public class Main {
 						
 				           int x = sc.nextInt();
 				           if(x==1) {
-				        	   Team.addPlayer(t1.l);
+				        	   addPlayer(t1.l);
 				           }
 				           else if(x==2) {
-				        	   Team.addPlayer(t2.l);
+				        	   addPlayer(t2.l);
 				           }
 				           
 				           
@@ -104,10 +104,10 @@ public class Main {
 				
 		           int y = sc.nextInt();
 		           if(y==1) {
-		        	   Team.deletePlayer(t1.l);
+		        	  deletePlayer(t1.l);
 		           }
 		           else if(y==2) {
-		        	   Team.deletePlayer(t2.l);
+		        	   deletePlayer(t2.l);
 		           }
 		          
 		        break;	   
@@ -137,6 +137,50 @@ public class Main {
 			}	
 		}
 	
+	//method adds a new player to a certain team
+	public static void addPlayer( List<Player> l) {
+    	
+		
+		try (Scanner sc = new Scanner(System.in)) {
+			System.out.println("Enter the player's name and skill:");
+		
+			String playerName = sc.next();
+			int playerSkill= sc.nextInt();
+			
+			//we create a new object (type Player) and add it to the list of players
+			Player p = new Player(playerName, playerSkill);
+			l.add(p);
+			
+			sc.close();
+		}
+		
+		//displays the list after the add operation
+		l.forEach(n-> System.out.println(n));
+	}
+	
+	
+	//method deletes a player from a certain team
+	public static void deletePlayer(List<Player> l) {
+		try (Scanner sc = new Scanner(System.in)) {
+			System.out.println("Select the name of the player you want to delete:");
+			
+			
+			String name = sc.next();
+			
+			//finds the player whose name was set for deletion and removes it from the list
+			
+			for(int i = 0; i<l.size(); i++) {
+				if(l.get(i).getName().equals(name)) {
+					l.remove(l.get(i));
+					
+				}
+			}
+			
+			sc.close();
+	}
+		//displays the list after the delete operation
+		   l.forEach(n-> System.out.println(n));
+	}
 	
 	//add a new team to the Map
 	public static void addTeam( Map<Integer, Team> m) {
