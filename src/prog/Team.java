@@ -49,51 +49,7 @@ public class Team {
         return totalSkill;
 	}	
 	
-	//method adds a new player to a certain team
-	public static void addPlayer( List<Player> l) {
-    	
-		
-		try (Scanner sc = new Scanner(System.in)) {
-			System.out.println("Enter the player's name and skill:");
-		
-			String playerName = sc.next();
-			int playerSkill= sc.nextInt();
-			
-			//we create a new object (type Player) and add it to the list of players
-			Player p = new Player(playerName, playerSkill);
-			l.add(p);
-			
-			sc.close();
-		}
-		
-		//displays the list after the add operation
-		l.forEach(n-> System.out.println(n));
-	}
 	
-	
-	//method deletes a player from a certain team
-	public static void deletePlayer(List<Player> l) {
-		try (Scanner sc = new Scanner(System.in)) {
-			System.out.println("Select the name of the player you want to delete:");
-			
-			
-			String name = sc.next();
-			
-			//finds the player whose name was set for deletion and removes it from the list
-			
-			for(int i = 0; i<l.size(); i++) {
-				if(l.get(i).getName().equals(name)) {
-					l.remove(l.get(i));
-					
-				}
-			}
-			
-			sc.close();
-	}
-		//displays the list after the delete operation
-		   l.forEach(n-> System.out.println(n));
-	}
-
 	
 	}
 
